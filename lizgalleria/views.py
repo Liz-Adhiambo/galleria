@@ -15,9 +15,10 @@ def about(request):
 def gallery(request):
     images = Image.get_all_images()
     locations = Location.objects.all()
-    title = 'Sunsplash'
+    
+    
 
-    return render(request, 'gallery.html', {'title':title, 'images':images, 'locations':locations})
+    return render(request, 'gallery.html', {'images':images, 'locations':locations})
 
 def image(request,category_name,image_id):
     

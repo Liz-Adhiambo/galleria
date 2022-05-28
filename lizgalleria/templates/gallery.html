@@ -57,11 +57,21 @@
 
       {% if images|length > 0 %}
       {% for image in images %}
-      <div class="col">
-        <div class="card shadow-sm">
+
+
+      
+
+
+
+
+
+
+
+       <div class="col">
+            <div class="card shadow-sm">
+                
             
-        
-          
+            
           
           <img src="{{image.landImage.url}}" alt="">
 
@@ -95,6 +105,12 @@
                       <div class="modal-body">
                         
                         <img src="{{image.landImage.url}}"class="img-thumbnail">
+                        <p>location:{{image.image_location.name}}</p>
+                        <br>
+
+                        <p>category:{{image.image_category.name}}</p>
+                        <h1>description</h1>
+                        <p>{{image.description}}</p>
                     </div>
                       
                 </div>
@@ -114,6 +130,6 @@
       {% endif %}
     </div>
 
-  </div>  
+  </div>   
   
 {% endblock %}
