@@ -103,8 +103,8 @@
                       </div>
                       <!-- Modal body with image -->
                       <div class="modal-body">
-                        
-                        <img src="{{image.landImage.url}}"class="img-thumbnail">
+                        <a href="{% url 'image' category_name=image.image_category.name image_id=image.id%}">
+                        <img src="{{image.landImage.url}}"class="img-thumbnail"></a>
                         <p>location:{{image.image_location.name}}</p>
                         <br>
 
