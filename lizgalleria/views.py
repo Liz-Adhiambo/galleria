@@ -11,4 +11,10 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+def gallery(request):
+    images = Image.get_all_images()
+    locations = Location.objects.all()
+    title = 'Sunsplash'
+
+    return render(request, 'gallery.html', {'title':title, 'images':images, 'locations':locations})
 
