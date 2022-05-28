@@ -112,6 +112,12 @@
                         <h1>description</h1>
                         <p>{{image.description}}</p>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="copy('img{{image.id}}')">Copy Link</button>
+                        <!-- <input class="form-control" type="text" value="{{image.image_link}}" id="link">
+                       <a onclick="myFunction()"><button type="button"  class="btn btn-primary">Copy Link</button></a> -->
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                       
                 </div>
             </div>
