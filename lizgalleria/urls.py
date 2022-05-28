@@ -7,7 +7,7 @@ urlpatterns = [
     path('', views.home, name='gallery-home'),
     path('about/', views.about, name='gallery-about'),
     path('gallery/',views.gallery,name = 'gallery'),
-    
+    path(r'^image/<category_name>/<image_id>',views.image,name = 'image')
 ]
 
 if settings.DEBUG:
