@@ -8,7 +8,8 @@ urlpatterns = [
     path('about/', views.about, name='gallery-about'),
     path('gallery/',views.gallery,name = 'gallery'),
     path(r'^image/<category_name>/<image_id>',views.image,name = 'image'),
-    path(r'^search/', views.search_image, name='search_image')
+    path(r'^search/', views.search_image, name='search_image'),
+    path(r'^location/(?P<image_location>\d+)', views.location_filter, name='location'),
 ]
 
 if settings.DEBUG:

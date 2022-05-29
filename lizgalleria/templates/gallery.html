@@ -8,6 +8,18 @@
 
 
  <body>
+    <div id="sideNav" class="nav-side">
+        <a href="javascript:void(0)" class="close-nav">&times;</a>
+        <a href="#" data-toggle="modal" data-target="#about">About</a>
+        <a>Locations:</a>
+        {% for location in locations %}
+        <a href="">{{location.name}}</a>
+        {% empty %}
+        <a href="#">There are no locations</a>
+        {% endfor %}
+        <hr>
+        <div class="locations">
+        </div>
 
 <div class="container">
   <header class="blog-header py-3">
@@ -52,47 +64,24 @@
 
 <div class="album py-5 bg-light">
   <div class="container">
-
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
       {% if images|length > 0 %}
-      {% for image in images %}
-
-
-      
-
-
-
-
-
-
-
-       <div class="col">
-            <div class="card shadow-sm">
-                
-            
-            
-          
-          <img src="{{image.landImage.url}}" alt="">
-
-          <div class="card-body">
-              <div class="btn-group">
-                  <a href="{% url 'image' category_name=image.image_category.name image_id=image.id%}"><button type="button" class="btn btn-sm btn-outline-secondary">Image Details</button></a>
-                </div>
-                      <button type="button" class="btn btn-primary"
-              data-toggle="modal" data-target="#exampleModal{{ forloop.counter }}">
-              Click to view modal
-          </button>
-          <!--Bootstrap modal -->
+        {% for image in images %}
+      <div class="col">
+        <div class="card shadow-sm">          
+               <img src="{{image.landImage.url}}" data-toggle="modal"
+              data-target="#exampleModal{{ forloop.counter }}">
           <div class="modal fade" id="exampleModal{{ forloop.counter }}" tabindex="-1"
               role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
               <div class="modal-dialog" role="document">
                   <div class="modal-content">
-                      <!-- Modal heading -->
                       <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">
-                              LizGalleria
+                          <!-- w-100 class so that header
+                      div covers 100% width of parent div -->
+                          <h5 class="modal-title w-100"
+                              id="exampleModalLabel">
+                              GeeksForGeeks
                           </h5>
                           <button type="button" class="close"
                               data-dismiss="modal" aria-label="Close">
@@ -101,41 +90,28 @@
                               </span>
                           </button>
                       </div>
-                      <!-- Modal body with image -->
-                      <div class="modal-body">
-                        <a href="{% url 'image' category_name=image.image_category.name image_id=image.id%}">
-                        <img src="{{image.landImage.url}}"class="img-thumbnail"></a>
-                        <p>location:{{image.image_location.name}}</p>
-                        <br>
-
-                        <p>category:{{image.image_category.name}}</p>
-                        <h1>description</h1>
-                        <p>{{image.description}}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" onclick="copy('img{{image.id}}')">Copy Link</button>
-                        <!-- <input class="form-control" type="text" value="{{image.image_link}}" id="link">
-                       <a onclick="myFunction()"><button type="button"  class="btn btn-primary">Copy Link</button></a> -->
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                      
-                </div>
-            </div>
-        </div>
-                  
-                  <div class="d-flex justify-content-between align-items-center">
-                    
-                    <small class="text-muted">{{image.date_created|date}}</small>
-                  </div>
-                </div>
+                      <!--Modal body with image-->
+                <div class="modal-body" style="height:200px">
+                  <img src="{{image.landImage.url}}"style="height:200px">
               </div>
-            </div>
-      {% endfor %}
-      {% else %}
-      <h2>No Images Uploaded for this category</h2>
-      {% endif %}
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger"
+                      data-dismiss="modal">
+                      Close
+                  </button>
+              </div>
+          </div>
+      </div>
     </div>
+    
+  </div>
+      
+    </div>{% endfor %}
+    {% else %}
+    <h2>No Images Uploaded for this category</h2>
+    {% endif %}
 
-  </div>   
+  </div> 
   
+</div> 
 {% endblock %}
