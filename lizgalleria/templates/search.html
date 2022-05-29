@@ -1,70 +1,35 @@
-
-
 {%extends 'base.html'%}
 {% load static%}
 {% block content %}
 
 {{block.super}}
 
-
- <body>
-
-<div class="container">
-  <header class="blog-header py-3">
-    <div class="row flex-nowrap justify-content-between align-items-center">
-      <div class="col-4 pt-1">
-        <a class="link-secondary" href="#"></a>
-      </div>
-      <div class="col-4 text-center">
-        <a class="blog-header-logo text-dark" href="#">LizGalleria Images</a>
-      </div>
-      <div class="col-4 d-flex justify-content-end align-items-center">
-        <form class="form" role="search" action="{% url 'search_image' %}">
-
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="&#xf3ee; Search by category" name="image_category">
-              <br>
-             </div>
-
-             <small>Trending : Animals, Art</small>
-
-          </form>
-
-      </div>
+<!-- Landing Page -->
+<div class="banner-1">
+    <div class="cover-1">
+        {% if images%}
+        <h2>Found {{ images|length}} images for searched term {{message}}</h2>
+        {% else %}
+        <h2>Found 0 articles for the search term {{message}}</h2>
+        {% endif %}
+        <div class="container imageloc">
+            <form class="form" role="search" action="{% url 'search_image' %}">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="&#xf3ee; Search by category"name="image_category">
+                  <br>
+                 </div>
+                 <small>Trending searches: fashion, travel</small>
+              </form>
+        </div>
     </div>
-  </header>
-
-  
-
-<main class="container">
-  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-    <div class="col-md-6 px-0">
-      <p class="display-4 fst-italic">Liz<span>Galleria</span></p>
-      <p class="lead my-3">Here's lizGalleria, You can view images in the following dimensions: Square (1000X1000),
-      Landscape(2878X1618) and Tall(1618X2878).</p>
-      <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
-    </div>
-  </div>
-
-</main>
-
-<p>View images</p>
+</div>
 
 <div class="album py-5 bg-light">
-  <div class="container">
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-      {% if images|length > 0 %}
-      {% for image in images %}
-
-
-      
-
-
-
-
-
+    <div class="container">
+  
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+  
+          {% for image in images %}
 
 
        <div class="col">
@@ -130,12 +95,20 @@
                 </div>
               </div>
             </div>
-      {% endfor %}
-      {% else %}
-      <h2>No Images Uploaded for this category</h2>
-      {% endif %}
+      
+        {% empty %}
     </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <img src="{% static 'images/sorry.png' %}" alt="" class = "oops">
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <h2 class="text-center"> Sorry no image for {{message}} category. Images are comming soon.</h2>
+        </div>
+    </div>
+    {% endfor %}
 
-  </div>   
-  
+    
+</div>
+
 {% endblock %}
