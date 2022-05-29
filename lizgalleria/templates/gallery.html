@@ -92,7 +92,14 @@
                       </div>
                       <!--Modal body with image-->
                 <div class="modal-body" >
-                  <img src="{{image.landImage.url}}"style="height:350px">
+                  <a href="{% url 'image' category_name=image.image_category.name image_id=image.id%}">
+                  <img src="{{image.landImage.url}}"style="height:350px"></a>
+                  <p>location:{{image.image_location.name}}</p>
+                        <br>
+
+                        <p>category:{{image.image_category.name}}</p>
+                        <h1>description</h1>
+                        <p>{{image.description}}</p>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-danger"
