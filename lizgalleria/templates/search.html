@@ -5,7 +5,8 @@
 {{block.super}}
 
 <!-- Landing Page -->
-<div class="banner-1">
+<div class="container" id="gal">
+  
     <div class="cover-1">
         {% if images%}
         <h2>Found {{ images|length}} images for searched term {{message}}</h2>
@@ -22,6 +23,7 @@
               </form>
         </div>
     </div>
+ 
 </div>
 
 <div class="album py-5 bg-light">
