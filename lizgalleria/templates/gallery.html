@@ -9,23 +9,52 @@
 
  <body>
   <div class="container">
-    <div class="card">
-    <div class="card-header">
-        Locations
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-            <a href="{% url 'gallery' %}">All</a>
-        </li>
+    
+     
+    <div class="nav-scroller ">
+      <nav class="nav d-flex justify-content-between">
+        <a id="lin" href="{% url 'gallery' %}">All Images</a>
+
         {% for location in locations %}
-        <li class=" list-group-item">
-            <a href="{% url 'gallery' %}?location={{location.name}}">
-                {{location.name}}
-            </a>
-        </li>
+        <a id="lin"class="p-2 link-dark" href="{% url 'gallery' %}?location={{location.name}}">{{location.name}}</a>
         {% endfor %}
+
+      </nav>
+    </div>
+  </div>
+
+    <div class="container" id="gal"> 
+      <div class="p-4 p-md-5 mb-4  rounded ">
+        <div class="row">
+          <div class="col-md-6 px-0" >
+            <p class="display-4 fst-italic">Liz<span>Galleria</span></p>
+            <p class="lead my-3">Here's lizGalleria, You can view images in the following dimensions:
+            Landscape(2878X1618) and Tall(1618X2878).</p>
+            <p class="lead mb-0"><a href="{% url 'gallery-about' %}" class="text-white fw-bold">Continue reading...</a></p>
+          </div>
+      
+          <div class="col-6 d-flex justify-content-end align-items-center">
+            <form class="form" role="search" action="{% url 'search_image' %}">
+
+                <div class="input-group" style="width:500px">
+                  <input type="text" class="form-control" placeholder="&#xf3ee; Search by category...art, books, animals" name="image_category">
+                  <br>
+                </div>
+
+                <h6>Categories : Animals, Art,books</h6>
+
+              
+              
+              
+              </form>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+  
+    
+
 
 <div class="container">
   <header class="blog-header py-3">
@@ -33,38 +62,17 @@
       <div class="col-4 pt-1">
         <a class="link-secondary" href="#"></a>
       </div>
-      <div class="col-4 text-center">
-        <h2 class="blog-header-logo text-dark" href="#">LizGalleria Images</h2>
-      </div>
-      <div class="col-4 d-flex justify-content-end align-items-center">
-        <form class="form" role="search" action="{% url 'search_image' %}">
-
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="&#xf3ee; Search by category" name="image_category">
-              <br>
-             </div>
-
-             <small>Categories : Animals, Art,books</small>
-
-          </form>
-
-      </div>
+      
+      
     </div>
   </header>
 
   
 
-<main class="container">
-  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-    <div class="col-md-6 px-0">
-      <p class="display-4 fst-italic">Liz<span>Galleria</span></p>
-      <p class="lead my-3">Here's lizGalleria, You can view images in the following dimensions: Square (1000X1000),
-      Landscape(2878X1618) and Tall(1618X2878).</p>
-      <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
-    </div>
-  </div>
 
-</main>
+  
+
+
 
 <h2 style="text-align:center">View images</h2>
 

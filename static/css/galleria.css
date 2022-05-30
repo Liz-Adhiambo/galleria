@@ -24,10 +24,17 @@ h1 {
     padding: 100px 0 0 0;   
 }
 #dark{
-    color: beige;
+    color: rgb(71, 71, 64);
 }
 
-
+#gal{
+    background: url("/static/photos/bb3.jpeg") ;
+    color: white;
+    font-weight: bolder;
+}
+#lin{
+    color:black
+}
 
 
 
