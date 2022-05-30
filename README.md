@@ -2,7 +2,7 @@
 
 ## Author
 **Elizabeth Adhiambo Onyango**
-~Full stack developer~
+~Full stack developer
 
 
 
