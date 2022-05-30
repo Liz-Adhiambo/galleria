@@ -15,7 +15,15 @@ def about(request):
 def gallery(request):
     images = Image.get_all_images()
     locations = Location.objects.all()
-    
+    location = request.GET.get('location')
+
+    if location ==None:
+         images = Image.objects.all()
+    else:
+        
+        images= Image.objects.filter(image_location__name=location)
+
+   
     
 
     return render(request, 'gallery.html', {'images':images, 'locations':locations})

@@ -8,18 +8,24 @@
 
 
  <body>
-    <div id="sideNav" class="nav-side">
-        <a href="javascript:void(0)" class="close-nav">&times;</a>
-        <a href="#" data-toggle="modal" data-target="#about">About</a>
-        <a>Locations:</a>
+  <div class="container">
+    <div class="card">
+    <div class="card-header">
+        Locations
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <a href="{% url 'gallery' %}">All</a>
+        </li>
         {% for location in locations %}
-        <a href="">{{location.name}}</a>
-        {% empty %}
-        <a href="#">There are no locations</a>
+        <li class=" list-group-item">
+            <a href="{% url 'gallery' %}?location={{location.name}}">
+                {{location.name}}
+            </a>
+        </li>
         {% endfor %}
-        <hr>
-        <div class="locations">
-        </div>
+      </div>
+    </div>
 
 <div class="container">
   <header class="blog-header py-3">
@@ -119,7 +125,7 @@
       
     </div>{% endfor %}
     {% else %}
-    <h2>No Images Uploaded for this category</h2>
+    <h2>No Images Uploaded for this category/location</h2>
     {% endif %}
 
   </div> 
