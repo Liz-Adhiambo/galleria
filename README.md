@@ -7,7 +7,7 @@
 
 
 <img src="/static/photos/screenshot1.png">
-
+<img src="/static/photos/screenshot2.png">
 
 ## Project Description
 
