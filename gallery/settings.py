@@ -12,13 +12,14 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+import dj_database_url
 
-BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(os.path.join(BASE_DIR, ".env"))
+# BASE_DIR = Path(__file__).resolve().parent.parent
 
-import django_heroku
+# load_dotenv(os.path.join(BASE_DIR, ".env"))
+
+# import django_heroku
 import dj_database_url
 from decouple import config,Csv
 
@@ -33,11 +34,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 MODE=os.getenv("MODE", default="dev")
 SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG', default=False, cast=bool)
+DEBUG = os.getenv('DEBUG', default=False, )
 # SECURITY WARNING: don't run with debug turned on in production!
 # development
 
-
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+# CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(' ')
 # Application definition
 
 INSTALLED_APPS = [
@@ -86,39 +88,45 @@ WSGI_APPLICATION = 'gallery.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'galleria',
-        'USER': 'liz',
-    'PASSWORD':'1234',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'galleria',
+#         'USER': 'liz',
+#     'PASSWORD':'1234',
+#     }
+# }
+# from dotenv import load_dotenv
+# load_dotenv()
 
-# if config('MODE')=="dev":
-#    DATABASES = {
-#        'default': {
-#            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#            'NAME': config('DB_NAME'),
-#            'USER': config('DB_USER'),
-#            'PASSWORD': config('DB_PASSWORD'),
-#            'HOST': config('DB_HOST'),
-#            'PORT': '',
-#        }
+# DATABASES = {
+#     "default": dj_database_url.parse(os.environ.get("DATABASE_URL"), conn_max_age=600)
+# }
+
+if config('MODE')=="dev":
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': config('DB_NAME'),
+           'USER': config('DB_USER'),
+           'PASSWORD': config('DB_PASSWORD'),
+           'HOST': config('DB_HOST'),
+           'PORT': '',
+       }
        
-#    }
-# # production
-# else:
-#    DATABASES = {
-#        'default': dj_database_url.config(
-#            default=config('DATABASE_URL')
-#        )
-#    }
+   }
+# production
+else:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=config('DATABASE_URL')
+        )
+    }
 
-# db_from_env = dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(db_from_env)
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
 
-# ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 # ALLOWED_HOSTS = []
 
@@ -173,7 +181,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Configure Django App for Heroku.
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
